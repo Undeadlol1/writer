@@ -1,6 +1,5 @@
 import { handleActions } from 'redux-actions'
 import { toastr } from 'react-redux-toastr'
-import { recieveMood, recieveMoods, fetchingInProgress, fetchingError } from '../actions/MoodActions'
 import { Map, List } from 'immutable'
 
 const emptyMoodStructure = {

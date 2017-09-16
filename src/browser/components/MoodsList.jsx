@@ -1,6 +1,6 @@
 import { fetchMoods } from 'browser/redux/actions/MoodActions'
 import Pagination from 'react-ultimate-pagination-material-ui'
-import { Card, CardMedia, CardTitle } from 'material-ui/Card'
+import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card'
 import { translate } from 'browser/containers/Translator'
 import { Row, Col } from 'react-styled-flexboxgrid'
 import Link from 'react-router/lib/Link'
@@ -8,7 +8,7 @@ import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { List } from 'immutable'
+import { List, fromJS } from 'immutable'
 import selectn from 'selectn'
 import Loading from 'browser/components/Loading'
 
@@ -22,17 +22,18 @@ export class MoodsList extends Component {
 		const { props } = this
 		if(props.moods.size) {
 			return props.moods.map( mood => {
-					const nodeContent = mood.getIn(['Nodes', 0, 'contentId'])
+					const nodeContent = mood.get('image')
 					const src = nodeContent
-								? `http://img.youtube.com/vi/${nodeContent}/0.jpg`
+								? nodeContent
 								: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2000px-No_image_available.svg.png'
 					return	<Col className="MoodsList__item" style={itemStyles} xs={12} sm={6} md={4} lg={3} key={mood.get('id')}>
 								<Paper zDepth={5}>
 									<Link to={`/mood/${mood.get('slug')}`}>
 										<Card>
-											<CardMedia overlay={<CardTitle title={mood.get('name')} />}>
-												<img alt={mood.get('name') + translate('things_image')} src={src} />
+											<CardMedia overlay={<CardTitle title={mood.get('title')} subtitle={mood.get('shortPitch')} />}>
+												<img alt={mood.get('title') + translate('things_image')} src={src} />
 											</CardMedia>
+											{/* <CardTitle title={mood.get('title')} /> */}
 										</Card>
 									</Link>
 								</Paper>
@@ -92,7 +93,27 @@ MoodsList.propTypes = {
 }
 
 MoodsList.defaultProps = {
-	moods: List(),
+	// moods: List(),
+	moods: fromJS([
+		{
+			id: '1',
+			title: 'Евгеника',
+			image: 'https://i.pinimg.com/236x/9b/82/4a/9b824a0b002b842c8c2c4c216b034307.jpg',
+			shortPitch: 'blahblah фывлыфвлдфвфывлд',
+		},
+		{
+			id: '2',
+			title: 'Второй',
+			image: 'https://i.pinimg.com/236x/52/2e/d8/522ed8f7a34580bac8399278f4f7a4f3.jpg',
+			shortPitch: 'blahblah фывлыфвлдфвфывлд',
+		},
+		{
+			id: '3',
+			title: 'Третий',
+			image: 'https://i.pinimg.com/originals/76/2c/50/762c50ba587ffce8cbd319e865da0e4d.png',
+			shortPitch: 'blahblah фывлыфвлдфвфывлд',
+		},
+	]),
 	totalPages: 0,
 	currentPage: 0,
 }
