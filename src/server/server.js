@@ -97,6 +97,7 @@ app.use('/api/moods', moodsApi)
 app.use('/api/nodes', nodesApi)
 app.use('/api/decisions', decisionsApi)
 app.use('/api/externals', externalsApi)
+app.use('/api/projects', require('./middlewares/projectsApi').default)
 // ⚠️ Hook for cli! Do not remove 💀
 
 // SPA
