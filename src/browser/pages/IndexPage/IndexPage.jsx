@@ -24,7 +24,7 @@ class IndexPage extends PureComponent {
 						{/* <WelcomeCard /> */}
 						<MoodsInsert />
 						{/* <MoodTabs /> */}
-						<MoodsList />
+						<MoodsList moods={props.projects} />
 					</Grid>
 				</PageWrapper>
     }
@@ -42,7 +42,8 @@ export { IndexPage }
 
 export default
 connect(
-	({mood}) => ({
+	({mood, project}) => ({
+		projects: project.get('projects'),
 		moods: mood.get('moods'),
 		loading: mood.get('loading'),
 		totalPages: mood.get('totalPages'),

@@ -28,7 +28,7 @@ export class MoodsList extends Component {
 								: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2000px-No_image_available.svg.png'
 					return	<Col className="MoodsList__item" style={itemStyles} xs={12} sm={6} md={4} lg={3} key={mood.get('id')}>
 								<Paper zDepth={5}>
-									<Link to={`/mood/${mood.get('slug')}`}>
+									<Link to={`/projects/${mood.get('slug')}`}>
 										<Card>
 											<CardMedia overlay={<CardTitle title={mood.get('title')} subtitle={mood.get('shortPitch')} />}>
 												<img alt={mood.get('title') + translate('things_image')} src={src} />
@@ -93,27 +93,27 @@ MoodsList.propTypes = {
 }
 
 MoodsList.defaultProps = {
-	// moods: List(),
-	moods: fromJS([
-		{
-			id: '1',
-			title: 'Евгеника',
-			image: 'https://i.pinimg.com/236x/9b/82/4a/9b824a0b002b842c8c2c4c216b034307.jpg',
-			shortPitch: 'blahblah фывлыфвлдфвфывлд',
-		},
-		{
-			id: '2',
-			title: 'Второй',
-			image: 'https://i.pinimg.com/236x/52/2e/d8/522ed8f7a34580bac8399278f4f7a4f3.jpg',
-			shortPitch: 'blahblah фывлыфвлдфвфывлд',
-		},
-		{
-			id: '3',
-			title: 'Третий',
-			image: 'https://i.pinimg.com/originals/76/2c/50/762c50ba587ffce8cbd319e865da0e4d.png',
-			shortPitch: 'blahblah фывлыфвлдфвфывлд',
-		},
-	]),
+	moods: List(),
+	// moods: fromJS([
+	// 	{
+	// 		id: '1',
+	// 		title: 'Евгеника',
+	// 		image: 'https://i.pinimg.com/236x/9b/82/4a/9b824a0b002b842c8c2c4c216b034307.jpg',
+	// 		shortPitch: 'blahblah фывлыфвлдфвфывлд',
+	// 	},
+	// 	{
+	// 		id: '2',
+	// 		title: 'Второй',
+	// 		image: 'https://i.pinimg.com/236x/52/2e/d8/522ed8f7a34580bac8399278f4f7a4f3.jpg',
+	// 		shortPitch: 'blahblah фывлыфвлдфвфывлд',
+	// 	},
+	// 	{
+	// 		id: '3',
+	// 		title: 'Третий',
+	// 		image: 'https://i.pinimg.com/originals/76/2c/50/762c50ba587ffce8cbd319e865da0e4d.png',
+	// 		shortPitch: 'blahblah фывлыфвлдфвфывлд',
+	// 	},
+	// ]),
 	totalPages: 0,
 	currentPage: 0,
 }

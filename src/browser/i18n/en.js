@@ -6,7 +6,7 @@ export default {
     search: 'search',
     cancel: 'Cancel',
     submit: 'Submit',
-    name_cant_be_empty: "Name can't be empty",
+    title_cant_be_empty: "Title can't be empty",
     please_login: 'Please login',
     url_cant_be_empty: "Url can't be empty",
     this_mood_already_exists: 'This mood already exist!',
@@ -16,6 +16,10 @@ export default {
     add_your_own_mood: 'Add your own mood!',
     choose_your_language: 'Choose your language',
     currently_zero_content_here: 'Currently zero content here',
+
+    short_pitch: 'Short pitch',
+    add_short_pitch: 'Add short pitch',
+    short_pitch_cant_be_empty: 'Short pitch can\'t be empty',
 
     mood_is_a_content_consumption_service: 'Mood is a content consumption service.',
     pick_your_mood_and_service_will_generate: 'Pick your mood and service will generate unique personalized playlist for you',

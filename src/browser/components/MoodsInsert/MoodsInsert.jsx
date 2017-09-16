@@ -16,11 +16,12 @@ import { actions } from 'browser/redux/actions/GlobalActions'
 import { parseJSON } from'browser/redux/actions/actionHelpers'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import { insertMood, toggleDialog } from 'browser/redux/actions/MoodActions'
+import { insertProject } from 'browser/redux/project/ProjectActions'
 
 export class MoodsInsert extends Component {
 	render() {
 		const { props } = this
-		const { insertMood, handleSubmit, dialogIsOpen, toggleDialog, asyncValidating, className } = props
+		const { insertProject, handleSubmit, dialogIsOpen, toggleDialog, asyncValidating, className } = props
 		const classNames = cls(className, "MoodsInsert")
 		const isDisabled = props.asyncValidating == 'name' || props.submitting
 		const actions = [
@@ -48,14 +49,15 @@ export class MoodsInsert extends Component {
                         autoScrollBodyContent={true}
                         onRequestClose={toggleDialog}
                     >
-						<form onSubmit={handleSubmit(insertMood)}>
+						<Form onSubmit={handleSubmit(insertProject)}>
 							<Row>
 								<Col xs={12}>
-									<Field name="name" component={TextField} hidden={asyncValidating} hintText={translate("add_something")} autoFocus fullWidth />
+									<Field name="title" component={TextField} hidden={asyncValidating} hintText={translate("add_something")} autoFocus fullWidth />
+									<Field name="shortPitch" component={TextField} hidden={asyncValidating} hintText={translate("add_short_pitch")} fullWidth />
 									<button type="submit" hidden={true}>Submit</button>
 								</Col>
 							</Row>
-						</form>
+						</Form>
 					</Dialog>
 				</div>
 
@@ -64,24 +66,26 @@ export class MoodsInsert extends Component {
 // TODO reorganize this for better testing
 export default reduxForm({
 	form: 'MoodsInsert',
-	asyncValidate({name}) {
-		return fetch('/api/moods/mood/' + '?' + stringify({name}))
-				.then(parseJSON)
-				.then(result => {
-					if (result) throw { name: translate('this_mood_already_exists') }
-					else return
-				})
-    },
+	// asyncValidate({title}) {
+	// 	return
+		// return fetch('/api/moods/mood/' + '?' + stringify({title}))
+		// 		.then(parseJSON)
+		// 		.then(result => {
+		// 			if (result) throw { title: translate('this_mood_already_exists') }
+		// 			else return
+		// 		})
+    // },
 	validate(values) {
 		let errors = {}
 		const user = store.getState().user.get('id')
 
-		if (!user) errors.name = translate('please_login')
-		if (!values.name) errors.name = translate('name_cant_be_empty')
+		if (!user) errors.title = translate('please_login')
+		if (!values.title) errors.title = translate('title_cant_be_empty')
+		if (!values.shortPitch) errors.shortPitch = translate('short_pitch_cant_be_empty')
 
 		return errors
 	},
-	asyncBlurFields: [ 'name' ]
+	// asyncBlurFields: [ 'title' ]
 })
 (connect(
 	(state, ownProps) => ({
@@ -89,13 +93,13 @@ export default reduxForm({
 		...ownProps
 	}),
     (dispatch, ownProps) => ({
-        insertMood({name}) {
-			function insertSucces(slug) {
+        insertProject(values) {
+			function insertSucces(response) {
 				ownProps.reset()
-				browserHistory.push('/mood/' + slug);
+				browserHistory.push('/project/' + response.slug);
 			}
             dispatch(toggleDialog())
-            dispatch(insertMood(name, insertSucces))
+            dispatch(insertProject(values, insertSucces))
 		},
 		toggleDialog() {
 			dispatch(actions.toggleControls())

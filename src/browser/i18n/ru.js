@@ -6,7 +6,8 @@ export default {
     about: 'о проекте',
     cancel: 'Отмена',
     submit: 'Отправить',
-    name_cant_be_empty: "Имя не может быть пустым",
+    title_cant_be_empty: "Название не может быть пустым",
+    short_pitch_cant_be_empty: "Краткое описание не может быть пустым",
     please_login: 'Пожалуйста, войдите',
     url_cant_be_empty: "Url не может быть пустым",
     this_mood_already_exists: 'Настроение с таким именем уже существует!',
@@ -17,6 +18,9 @@ export default {
     choose_your_language: 'Выберите ваш язык',
     currently_zero_content_here: 'Пока контента нет',
 
+    short_pitch: 'Краткое описание',
+    add_short_pitch: 'Добавить краткое описание',
+    short_pitch_cant_be_empty: 'Краткое описание не может быть пустым',
 
     mood_is_a_content_consumption_service: 'Mood - это сервис потребления контента.',
     pick_your_mood_and_service_will_generate: 'Выберите свое настроение и сервис сгенерирует для вас уникальный персональный плейлист.',

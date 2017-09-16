@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import store from 'browser/redux/store'
 import { fetchUser } from 'browser/redux/actions/UserActions'
 import { fetchMoods, fetchMood } from 'browser/redux/actions/MoodActions'
+import { fetchProjects } from 'browser/redux/project/ProjectActions'
 import { fetchNodes, actions as nodeActions } from 'browser/redux/actions/NodeActions'
 
 /**
@@ -23,17 +24,20 @@ const routesConfig = {
     // fetch data
     onEnter({params}, replace, done) {
       // check if fetching is needed
-      const newMoods = store.getState().mood.getIn(['new', 'moods'])
-      if (newMoods.size) return done()
-      else {
-        Promise
-        .all([
-          store.dispatch(fetchMoods('new')),
-          store.dispatch(fetchMoods('random')),
-          store.dispatch(fetchMoods('popular')),
-        ])
-        .then(() => done())
-      }
+      // const newMoods = store.getState().mood.getIn(['new', 'moods'])
+      store
+      .dispatch(fetchProjects(store.getState().user.get('id')))
+      .then(() => done())
+      // if (newMoods.size) return done()
+      // else {
+      //   Promise
+      //   .all([
+      //     store.dispatch(fetchMoods('new')),
+      //     store.dispatch(fetchMoods('random')),
+      //     store.dispatch(fetchMoods('popular')),
+      //   ])
+      //   .then(() => done())
+      // }
     }
   },
   childRoutes: [
