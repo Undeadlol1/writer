@@ -13,7 +13,7 @@ module.exports = {
   "development": {
     "username": "root",
     "password": null,
-    "database": "database_development",
+    "database": "writer_dev",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": false
@@ -21,7 +21,7 @@ module.exports = {
   "test": {
     "username": "root",
     "password": null,
-    "database": "mood_test", // "database_test", TODO bring this back
+    "database": "writer_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": false
