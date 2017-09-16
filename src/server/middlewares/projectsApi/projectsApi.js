@@ -50,11 +50,12 @@ router
 
 
   // create project
-  .post('/', mustLogin, async ({user, body: { title }}, res) => {
+  .post('/', mustLogin, async ({user, body}, res) => {
     try {
       const UserId = user.id
+      const title = body.title
       const slug = slugify(title)
-      const project = await Projects.create({ UserId, title, slug }) // TODO move this in model definition?
+      const project = await Projects.create({ ...body, UserId, title, slug }) // TODO move this in model definition?
       res.json(project)
     } catch (error) {
       console.log(error)
