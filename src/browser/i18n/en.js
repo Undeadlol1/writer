@@ -20,6 +20,28 @@ export default {
     short_pitch: 'Short pitch',
     add_short_pitch: 'Add short pitch',
     short_pitch_cant_be_empty: 'Short pitch can\'t be empty',
+    please_fill_this_field: 'Please fill this field',
+
+    usually_story_consists_of_3_parts: 'Usually story consists of 3 parts (or acts)',
+    transition_into_each_act_is_done_via_disasters: `Transition into each act is done via "disasters" or "breaks".\n
+    This means each act starts with something big which changes heroes life in a way where is no going back.\n
+    (ex. suddenly enemy armies are appeared on the horizon)`,
+    few_tips: 'Few tips',
+    usually_it_is_good_idea_to_make_one_of_breaks_heroes_choice: 'Usually it is good to make one of the breakes a heroes choice. It shows character strength and/or development (ex. hero decides to fight instead of running away)',
+    all_breaks_must_go_from_lower_to_higher: 'All breaks must go from lower to higher. Stakes must grow higher and higher',
+    what_will_character_learn_in_the_end: 'What will character learn in the end',
+    how_is_character_changed_by_the_end: 'How is character changed by the end? (good stories are first of all about development of character)',
+
+
+    enemy: 'Enemy',
+    enternal_conflict: 'Enternal conflict',
+    without_a_conflict_there_is_no_story: 'Without a conflict there is no story',
+    best_stories_are_about_conflicts: 'Best stories are not only about external conflicts (the actual physical enemy), but also about enternal conflict',
+    what_is_heroes_enterlan_struggle: 'What is heroes enternal struggle? What is his dillema? What are his demons? How does change and what should he learn by the end of the story',
+
+    beginning: 'Beginning',
+    middle: 'Middle',
+    end: 'End',
 
     mood_is_a_content_consumption_service: 'Mood is a content consumption service.',
     pick_your_mood_and_service_will_generate: 'Pick your mood and service will generate unique personalized playlist for you',

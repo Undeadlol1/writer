@@ -24,20 +24,10 @@ const routesConfig = {
     // fetch data
     onEnter({params}, replace, done) {
       // check if fetching is needed
-      // const newMoods = store.getState().mood.getIn(['new', 'moods'])
+      // if (newMoods.size) return done()
       store
       .dispatch(fetchProjects(store.getState().user.get('id')))
       .then(() => done())
-      // if (newMoods.size) return done()
-      // else {
-      //   Promise
-      //   .all([
-      //     store.dispatch(fetchMoods('new')),
-      //     store.dispatch(fetchMoods('random')),
-      //     store.dispatch(fetchMoods('popular')),
-      //   ])
-      //   .then(() => done())
-      // }
     }
   },
   childRoutes: [
@@ -72,7 +62,17 @@ const routesConfig = {
     { path: 'login', component: LoginPage },
     { path: 'search', component: SearchPage },
     { path: 'about', component: AboutPage },
-    // ⚠️ Hook for cli! Do not remove 💀
+    { path: 'projects/:ProjectId/conflicts', component: require('browser/pages/ConfilctsPage').default,     // fetch data
+      // onEnter({params}, replace, done) {
+      //   // check if fetching is needed
+      //   // if (newMoods.size) return done()
+      //   store
+      //   .dispatch(fetchProjects(store.getState().user.get('id')))
+      //   .then(() => done())
+      // }
+    },
+    { path: 'projects/:ProjectId/breaks', component: require('browser/pages/BreaksPage').default },
+// ⚠️ Hook for cli! Do not remove 💀
     // 404 page must go after everything else
     { path: '*', component: NotFound },
   ]

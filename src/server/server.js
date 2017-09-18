@@ -98,6 +98,8 @@ app.use('/api/nodes', nodesApi)
 app.use('/api/decisions', decisionsApi)
 app.use('/api/externals', externalsApi)
 app.use('/api/projects', require('./middlewares/projectsApi').default)
+app.use('/api/characters', require('./middlewares/charactersApi').default) 
+app.use('/api/scenes', require('./middlewares/scenesApi').default) 
 // ⚠️ Hook for cli! Do not remove 💀
 
 // SPA

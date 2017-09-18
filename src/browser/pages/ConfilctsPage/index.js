@@ -1,0 +1,1 @@
+export { default, ConfilctsPage } from './ConfilctsPage.jsx'

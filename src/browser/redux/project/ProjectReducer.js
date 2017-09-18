@@ -7,6 +7,7 @@ const projectStructure = 	Map({
 							title: '',
 							UserId: '',
 							shortPitch: '',
+							characters: List(),
 						})
 
 export const initialState = Map({
@@ -76,6 +77,8 @@ export default (state = initialState, {type, payload}) => {
 				searchIsActive: false,
 				searchedVideos: payload
 			})
+		case 'ADD_CHARACTER':
+			return state.updateIn(['characters'], arr => arr.push(payload))
 		default:
 			return state
 	}

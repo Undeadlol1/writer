@@ -63,6 +63,22 @@ router
     }
   })
 
+    // update project
+  .put('/:ProjectId', mustLogin, async ({params, user, body}, res) => {
+    try {
+      const UserId = user.id
+      const ProjectId = params.ProjectId
+      const project = await Projects.findById(ProjectId)
+
+      if (UserId != project.UserId) return res.status(401).end()
+
+      res.json(await project.update(body))
+    } catch (error) {
+      console.log(error)
+      res.status(500).end(error)
+    }
+  })
+
   // // search for project
   // .get('/search/:name/:page?', async (req, res) => { // TODO make sure pagination works right
   //   try {

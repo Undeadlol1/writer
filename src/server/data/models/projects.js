@@ -28,6 +28,8 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
           }
         });
+        Projects.hasMany(models.Characters)
+        Projects.hasMany(models.Scenes)
       },
       findIdBySlug: function(slug) {
         return Projects
