@@ -72,6 +72,7 @@ const routesConfig = {
       // }
     },
     { path: 'projects/:ProjectId/breaks', component: require('browser/pages/BreaksPage').default },
+    { path: 'projects/:ProjectId/steps', component: require('browser/pages/StepsPage').default },
 // ⚠️ Hook for cli! Do not remove 💀
     // 404 page must go after everything else
     { path: '*', component: NotFound },

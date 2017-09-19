@@ -13,11 +13,11 @@ import PageWrapper from 'browser/components/PageWrapper'
 import { translate as t } from 'browser/containers/Translator'
 import { createScene, createCharacter, updateProject } from 'browser/redux/project/ProjectActions'
 
-class ConfilctsPage extends PureComponent {
+class StepsPage extends PureComponent {
     render() {
 		const { props } = this
 		return 	<PageWrapper
-					className='ConfilctsPage'
+					className='StepsPage'
 					loading={props.loading}
 				>
 					<Grid fluid>
@@ -25,12 +25,6 @@ class ConfilctsPage extends PureComponent {
 							<Col xs={12}>
 								<Form onSubmit={props.handleSubmit(props.insertProject)}>
 									<p>{t('usually_story_consists_of_3_parts')}:</p>
-									<ul>
-										<li>{t('beginning')}</li>
-										<li>{t('middle')}</li>
-										<li>{t('end')}</li>
-									</ul>
-									<p>{t('transition_into_each_act_is_done_via_disasters')}</p>
 									<p>{t("few_tips")}:</p>
 									<ul>
 										<li>{t('usually_it_is_good_idea_to_make_one_of_breaks_heroes_choice')}</li>
@@ -50,15 +44,15 @@ class ConfilctsPage extends PureComponent {
     }
 }
 
-ConfilctsPage.propTypes = {
+StepsPage.propTypes = {
 	// prop: PropTypes.object,
 }
 
-export { ConfilctsPage }
+export { StepsPage }
 
 export default
 reduxForm({
-	form: 'BreaksPage',
+	form: 'StepsPage',
 	// asyncValidate({enemy}) {
 	// 	return
 		// return fetch('/api/moods/mood/' + '?' + stringify({enemy}))
@@ -124,4 +118,4 @@ reduxForm({
 			}
 		},
     })
-)(ConfilctsPage))
+)(StepsPage))
