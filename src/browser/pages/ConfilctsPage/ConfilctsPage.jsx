@@ -82,7 +82,7 @@ reduxForm({
 				name: enemy,
 				role: 'enemy',
 			}))
-			dispatch(updateProject({dilemma, ProjectId}, insertSucces))
+			dispatch(updateProject({dilemma, ProjectId, progress: 1}, insertSucces))
 
 			function insertSucces(response) {
 				ownProps.reset()

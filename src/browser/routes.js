@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound';
 import store from 'browser/redux/store'
 import { fetchUser } from 'browser/redux/actions/UserActions'
 import { fetchMoods, fetchMood } from 'browser/redux/actions/MoodActions'
-import { fetchProjects } from 'browser/redux/project/ProjectActions'
+import { fetchProjects, fetchProject } from 'browser/redux/project/ProjectActions'
 import { fetchNodes, actions as nodeActions } from 'browser/redux/actions/NodeActions'
 
 /**
@@ -62,17 +62,23 @@ const routesConfig = {
     { path: 'login', component: LoginPage },
     { path: 'search', component: SearchPage },
     { path: 'about', component: AboutPage },
-    { path: 'projects/:ProjectId/conflicts', component: require('browser/pages/ConfilctsPage').default,     // fetch data
-      // onEnter({params}, replace, done) {
-      //   // check if fetching is needed
-      //   // if (newMoods.size) return done()
-      //   store
-      //   .dispatch(fetchProjects(store.getState().user.get('id')))
-      //   .then(() => done())
-      // }
-    },
+    { path: 'projects/:ProjectId/conflicts', component: require('browser/pages/ConfilctsPage').default },
     { path: 'projects/:ProjectId/breaks', component: require('browser/pages/BreaksPage').default },
     { path: 'projects/:ProjectId/steps', component: require('browser/pages/StepsPage').default },
+    { path: 'projects/:ProjectSlug',
+      component: require('browser/pages/ProjectPage').default,
+      // fetch project data
+      onEnter({params}, replace, done) {
+        const fetchedProjectSlug = store.getState().project.get('id')
+        // check if fetching is needed
+        if (fetchedProjectSlug == params.ProjectSlug) return done()
+        else {
+          store
+          .dispatch(fetchProject(params.ProjectSlug))
+          .then(() => done())
+        }
+      }
+    },
 // ⚠️ Hook for cli! Do not remove 💀
     // 404 page must go after everything else
     { path: '*', component: NotFound },

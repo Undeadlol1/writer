@@ -2,16 +2,21 @@
 module.exports = function(sequelize, DataTypes) {
   var Projects = sequelize.define('Projects', {
     title: {
-        allowNull: false,
-        type: DataTypes.STRING,
+      allowNull: false,
+      type: DataTypes.STRING,
     },
     slug: {
       allowNull: false,
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
     shortPitch: {
       allowNull: false,
       type: DataTypes.STRING,
+    },
+    progress: {
+      defaultValue: 0,
+      allowNull: false,
+      type: DataTypes.INTEGER,
     },
     UserId: {
       allowNull: false,

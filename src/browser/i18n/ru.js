@@ -38,6 +38,31 @@ export default {
     all_breaks_must_go_from_lower_to_higher: 'Все прорывы должны идти от лучшего к худшему. Ставки должны расти, конфликты должны накаляться',
     what_will_character_learn_in_the_end: 'Чему научиться к герой к концу',
     how_is_character_changed_by_the_end: 'Как персонаж измениться к концу? (Хорошие истории впервую очередь о прогрессе характера)',
+
+    add_some_conflicts: 'Добавь конфликты',
+    major_breaks: 'Заполни катастрофы',
+    story_steps: 'Заполни елементы истории',
+
+    now_try_to_fill_out_steps: 'Now try to fill out the 15 steps of the story according to "Save The Cat" technique',
+    what_kind_of_points_would_be_interesting_to_see_in_your_story: 'What kind of points would be interesting to see in your story',
+    dont_get_stuck_in_wirters_block_have_fun: 'Don\'t get stuck in writers block, have fun, lay it out. You can always come back and change things later',
+
+    opening_image: 'Opening Image', // Начальный образ
+	set_up: 'Set-up',
+	theme_stated: 'Theme Stated',
+	catalyst: 'Catalyst',
+	debate: 'Debate',
+	break_into_two: 'Break Into Two',
+	b_story: 'B story',
+	fun_and_games: 'Fun and Games',
+	midpoint: 'Midpoint',
+	bad_guys_close_in: 'Bad Guys Close In',
+	all_is_lost: 'All Is Lost',
+	dark_night_of_the_soul: 'Dark Night of the Soul',
+	break_into_three: 'Break Into Three',
+	finale: 'Finale',
+	final_image: 'Final Image',
+
     beginning: 'Начало',
     middle: 'Середина',
     end: 'Конец',

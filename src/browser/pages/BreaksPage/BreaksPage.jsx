@@ -91,16 +91,16 @@ reduxForm({
 			const { ProjectId } = ownProps.params
 
 			const first = {
-				ProjectId,
 				step: 4,
+				ProjectId,
 				isPlotPoint: true,
 				description: beginning,
 				name: 'bad_guys_close_in',
 			}
 
 			const second = {
-				ProjectId,
 				step: 6,
+				ProjectId,
 				isPlotPoint: true,
 				description: middle,
 				name: 'break_into_two',
@@ -109,10 +109,17 @@ reduxForm({
 			const third = {
 				ProjectId,
 				step: 13,
-				isPlotPoint: true,
 				description: end,
+				isPlotPoint: true,
 				name: 'break_into_three',
 			}
+
+			dispatch(
+				updateProject({
+					ProjectId,
+					progress: '2',
+				})
+			)
 
 			dispatch(createScene(first))
 			dispatch(createScene(second))

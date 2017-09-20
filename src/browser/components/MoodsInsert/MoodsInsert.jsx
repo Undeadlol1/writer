@@ -96,7 +96,7 @@ export default reduxForm({
         insertProject(values) {
 			function insertSucces(response) {
 				ownProps.reset()
-				browserHistory.push('/project/' + response.slug);
+				browserHistory.push('/projects/' + response.slug);
 			}
             dispatch(toggleDialog())
             dispatch(insertProject(values, insertSucces))

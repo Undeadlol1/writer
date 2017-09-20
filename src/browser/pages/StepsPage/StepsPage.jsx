@@ -15,7 +15,8 @@ import { createScene, createCharacter, updateProject } from 'browser/redux/proje
 
 class StepsPage extends PureComponent {
     render() {
-		const { props } = this
+		const {props} = this
+		const className = cls(props.className, "PlotPointsForm")
 		return 	<PageWrapper
 					className='StepsPage'
 					loading={props.loading}
@@ -24,14 +25,8 @@ class StepsPage extends PureComponent {
 						<Row>
 							<Col xs={12}>
 								<Form onSubmit={props.handleSubmit(props.insertProject)}>
-									<p>{t('usually_story_consists_of_3_parts')}:</p>
-									<p>{t("few_tips")}:</p>
-									<ul>
-										<li>{t('usually_it_is_good_idea_to_make_one_of_breaks_heroes_choice')}</li>
-										<li>{t('all_breaks_must_go_from_lower_to_higher')}.</li>
-										<li>{t('what_will_character_learn_in_the_end')}?</li>
-										<li>{t('how_is_character_changed_by_the_end')}</li>
-									</ul>
+									<p>Now try to fill out the 15 steps of the story according to "Save The Cat" technique.</p>
+									<p>What kind of points would be interesting to see in your story? Don't stuck in writers block, have fun, lay it out. You can always come back and change things later.</p>
 									<Field name="beginning" component={TextField} multiLine={true} rows={3} hintText={t("beginning")} autoFocus fullWidth />
 									<Field name="middle" component={TextField} multiLine={true} rows={3} hintText={t("middle")} fullWidth />
 									<Field name="end" component={TextField} multiLine={true} rows={3} hintText={t("end")} fullWidth />
