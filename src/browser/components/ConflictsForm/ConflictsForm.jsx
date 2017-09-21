@@ -14,41 +14,34 @@ import PageWrapper from 'browser/components/PageWrapper'
 import { translate as t } from 'browser/containers/Translator'
 import { createCharacter, updateProject } from 'browser/redux/project/ProjectActions'
 
-class ConfilctsPage extends PureComponent {
+class ConflictsForm extends PureComponent {
     render() {
 		const { props } = this
 		const className = cls(props.className, 'ConflictsForm')
-		return 	<PageWrapper
-					className='ConfilctsPage'
-					loading={props.loading}
-				>
-					<Grid fluid>
-						<Row>
-							<Col xs={12}>
-								<Form onSubmit={props.handleSubmit(props.insertProject)}>
-									<p>{t('without_a_conflict_there_is_no_story')}.</p>
-									<Field name="enemy" component={TextField} hidden={props.asyncValidating} hintText={t("enemy")} autoFocus fullWidth />
-									<p>{t('best_stories_are_about_conflicts')}.</p>
-									<p>{t('what_is_heroes_enterlan_struggle')}?</p>
-									<Field name="dilemma" component={TextField} hidden={props.asyncValidating} hintText={t("enternal_conflict")} fullWidth />
-									<center><RaisedButton type="submit" label={t('submit')} primary={true} /></center>
-								</Form>
-							</Col>
-						</Row>
-					</Grid>
-				</PageWrapper>
+		return 	<Row>
+					<Col xs={12}>
+						<Form onSubmit={props.handleSubmit(props.insertProject)}>
+							<p>{t('without_a_conflict_there_is_no_story')}.</p>
+							<Field name="enemy" component={TextField} hidden={props.asyncValidating} hintText={t("enemy")} autoFocus fullWidth />
+							<p>{t('best_stories_are_about_conflicts')}.</p>
+							<p>{t('what_is_heroes_enterlan_struggle')}?</p>
+							<Field name="dilemma" component={TextField} hidden={props.asyncValidating} hintText={t("enternal_conflict")} fullWidth />
+							<center><RaisedButton type="submit" label={t('submit')} primary={true} disabled={!props.valid} /></center>
+						</Form>
+					</Col>
+				</Row>
     }
 }
 
-ConfilctsPage.propTypes = {
+ConflictsForm.propTypes = {
 	// prop: PropTypes.object,
 }
 
-export { ConfilctsPage }
+export { ConflictsForm }
 
 export default
 reduxForm({
-	form: 'ConflictsPage',
+	form: 'ConflictsForm',
 	// asyncValidate({enemy}) {
 	// 	return
 		// return fetch('/api/moods/mood/' + '?' + stringify({enemy}))
@@ -77,19 +70,17 @@ reduxForm({
 	}),
 	(dispatch, ownProps) => ({
         insertProject({enemy, dilemma}) {
-			const { ProjectId } = ownProps.params
 
             dispatch(createCharacter({
-				ProjectId,
 				name: enemy,
 				role: 'enemy',
 			}))
-			dispatch(updateProject({dilemma, ProjectId, progress: 1}, insertSucces))
+			dispatch(updateProject({dilemma, progress: 1})) // , insertSucces
 
-			function insertSucces(response) {
-				ownProps.reset()
-				browserHistory.push(`/project/${response.id}/breaks`)
-			}
+			// function insertSucces(response) {
+			// 	ownProps.reset()
+			// 	// browserHistory.push(`/project/${response.id}/breaks`)
+			// }
 		},
     })
-)(ConfilctsPage))
+)(ConflictsForm))

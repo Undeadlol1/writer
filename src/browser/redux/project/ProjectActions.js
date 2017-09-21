@@ -33,6 +33,7 @@ export const insertProject = (payload, callback) => (dispatch, getState) => {
 			dispatch(actions.recieveProject(response))
 			if (callback) return callback(response)
 		})
+		.catch(err => console.error(err))
 }
 
 /**
@@ -51,6 +52,7 @@ export const updateProject = (payload, callback) => (dispatch, getState) => {
 			dispatch(actions.recieveProject(response))
 			if (callback) return callback(response)
 		})
+		.catch(err => console.error(err))
 }
 
 /**
@@ -68,6 +70,7 @@ export const createCharacter = (payload, callback) => (dispatch, getState) => {
 			dispatch(actions.addCharacter(response))
 			if (callback) return callback(response)
 		})
+		.catch(err => console.error(err))
 }
 
 /**
@@ -78,6 +81,7 @@ export const createCharacter = (payload, callback) => (dispatch, getState) => {
 export const createScene = (payload, callback) => (dispatch, getState) => {
 	const ProjectId = payload.ProjectId || getState().project.get('id')
 	payload.ProjectId = ProjectId
+	console.log('ProjectId: ', ProjectId);
 	return fetch(scenesUrl, headersAndBody(payload))
 		.then(checkStatus)
 		.then(parseJSON)
@@ -86,6 +90,7 @@ export const createScene = (payload, callback) => (dispatch, getState) => {
 			// dispatch(actions.addCharacter(response))
 			if (callback) return callback(response)
 		})
+		.catch(err => console.error(err))
 }
 
 /**

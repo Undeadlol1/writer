@@ -43,7 +43,16 @@ class PlotPointsForm extends PureComponent {
 							<p>{t('dont_get_stuck_in_wirters_block_have_fun')}</p>
 							{
 								points.map(point => {
-									return <Field key={point} name={point} component={TextField} multiLine={true} rows={3} floatingLabelText={t(point)} fullWidth />
+									return 	<Field
+												rows={3}
+												fullWidth
+												key={point}
+												name={point}
+												multiLine={true}
+												component={TextField}
+												floatingLabelText={t(point)}
+												autoFocus={point == points[0]}
+											/>
 								})
 							}
 							<center><RaisedButton type="submit" label={t('submit')} primary={true} disabled={!props.valid} /></center>

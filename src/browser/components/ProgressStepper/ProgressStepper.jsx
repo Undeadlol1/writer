@@ -7,7 +7,12 @@ import {
 	Step,
 	Stepper,
 	StepLabel,
+	StepContent,
 } from 'material-ui/Stepper'
+import BreaksForm from 'browser/components/BreaksForm'
+import ConflictsForm from 'browser/components/ConflictsForm'
+import PlotPointsForm from 'browser/components/PlotPointsForm'
+import ExpandTransition from 'material-ui/internal/ExpandTransition'
 
 const steps = [
 	'add_some_conflicts',
@@ -15,19 +20,30 @@ const steps = [
 	'story_steps',
 ]
 
+const forms = [
+	<ConflictsForm />,
+	<BreaksForm />,
+	<PlotPointsForm />,
+]
+
 class ProgressStepper extends Component {
 	render() {
 		const {props} = this
 		const className = cls(props.className, "ProgressStepper")
-		return 	<Stepper className={className} activeStep={props.progress}>
-					{
-						steps.map((step, index) => {
-							return 	<Step key={index}>
-										<StepLabel>{t(step)}</StepLabel>
-									</Step>
-						})
-					}
-				</Stepper>
+		return 	<div>
+					<Stepper className={className} activeStep={props.progress}>
+						{
+							steps.map((step, index) => {
+								return 	<Step key={index}>
+											<StepLabel>{t(step)}</StepLabel>
+										</Step>
+							})
+						}
+					</Stepper>
+					<ExpandTransition loading={false} open={true}>
+						{forms[props.progress]}
+					</ExpandTransition>
+				</div>
 	}
 }
 

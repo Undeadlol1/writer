@@ -1,4 +1,5 @@
 // dependencies
+import cls from 'classnames'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import React, { PureComponent } from 'react'

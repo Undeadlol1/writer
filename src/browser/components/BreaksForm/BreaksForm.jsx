@@ -1,4 +1,5 @@
 // dependencies
+import cls from 'classnames'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import React, { PureComponent } from 'react'
@@ -9,53 +10,45 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import browserHistory from 'react-router/lib/browserHistory'
 // project files
 import store from 'browser/redux/store'
-import PageWrapper from 'browser/components/PageWrapper'
 import { translate as t } from 'browser/containers/Translator'
 import { createScene, createCharacter, updateProject } from 'browser/redux/project/ProjectActions'
 
-class ConfilctsPage extends PureComponent {
+class BreaksForm extends PureComponent {
     render() {
 		const { props } = this
-		const className = cls(props.className, "BreaksForm")
-		return 	<PageWrapper
-					className='ConfilctsPage'
-					loading={props.loading}
-				>
-					<Grid fluid>
-						<Row>
-							<Col xs={12}>
-								<Form onSubmit={props.handleSubmit(props.insertProject)}>
-									<p>{t('usually_story_consists_of_3_parts')}:</p>
-									<ul>
-										<li>{t('beginning')}</li>
-										<li>{t('middle')}</li>
-										<li>{t('end')}</li>
-									</ul>
-									<p>{t('transition_into_each_act_is_done_via_disasters')}</p>
-									<p>{t("few_tips")}:</p>
-									<ul>
-										<li>{t('usually_it_is_good_idea_to_make_one_of_breaks_heroes_choice')}</li>
-										<li>{t('all_breaks_must_go_from_lower_to_higher')}.</li>
-										<li>{t('what_will_character_learn_in_the_end')}?</li>
-										<li>{t('how_is_character_changed_by_the_end')}</li>
-									</ul>
-									<Field name="beginning" component={TextField} multiLine={true} rows={3} hintText={t("beginning")} autoFocus fullWidth />
-									<Field name="middle" component={TextField} multiLine={true} rows={3} hintText={t("middle")} fullWidth />
-									<Field name="end" component={TextField} multiLine={true} rows={3} hintText={t("end")} fullWidth />
-									<center><RaisedButton type="submit" label={t('submit')} primary={true} /></center>
-								</Form>
-							</Col>
-						</Row>
-					</Grid>
-				</PageWrapper>
+		const className = cls(props.className, 'BreaksForm')
+		return 	<Row className='BreaksForm'>
+					<Col xs={12}>
+						<Form onSubmit={props.handleSubmit(props.insertProject)}>
+							<p>{t('usually_story_consists_of_3_parts')}:</p>
+							<ul>
+								<li>{t('beginning')}</li>
+								<li>{t('middle')}</li>
+								<li>{t('end')}</li>
+							</ul>
+							<p>{t('transition_into_each_act_is_done_via_disasters')}</p>
+							<p>{t("few_tips")}:</p>
+							<ul>
+								<li>{t('usually_it_is_good_idea_to_make_one_of_breaks_heroes_choice')}</li>
+								<li>{t('all_breaks_must_go_from_lower_to_higher')}.</li>
+								<li>{t('what_will_character_learn_in_the_end')}?</li>
+								<li>{t('how_is_character_changed_by_the_end')}</li>
+							</ul>
+							<Field name="beginning" component={TextField} multiLine={true} rows={3} hintText={t("beginning")} autoFocus fullWidth />
+							<Field name="middle" component={TextField} multiLine={true} rows={3} hintText={t("middle")} fullWidth />
+							<Field name="end" component={TextField} multiLine={true} rows={3} hintText={t("end")} fullWidth />
+							<center><RaisedButton type="submit" label={t('submit')} primary={true} disabled={!props.valid} /></center>
+						</Form>
+					</Col>
+				</Row>
     }
 }
 
-ConfilctsPage.propTypes = {
+BreaksForm.propTypes = {
 	// prop: PropTypes.object,
 }
 
-export { ConfilctsPage }
+export { BreaksForm }
 
 export default
 reduxForm({
@@ -89,11 +82,9 @@ reduxForm({
 	}),
 	(dispatch, ownProps) => ({
         insertProject({beginning, middle, end}) {
-			const { ProjectId } = ownProps.params
 
 			const first = {
 				step: 4,
-				ProjectId,
 				isPlotPoint: true,
 				description: beginning,
 				name: 'bad_guys_close_in',
@@ -101,35 +92,33 @@ reduxForm({
 
 			const second = {
 				step: 6,
-				ProjectId,
 				isPlotPoint: true,
 				description: middle,
 				name: 'break_into_two',
 			}
 
 			const third = {
-				ProjectId,
 				step: 13,
 				description: end,
 				isPlotPoint: true,
 				name: 'break_into_three',
 			}
 
-			dispatch(
-				updateProject({
-					ProjectId,
-					progress: '2',
-				})
-			)
 
 			dispatch(createScene(first))
 			dispatch(createScene(second))
-			dispatch(createScene(third, insertSucces))
+			dispatch(createScene(third))
 
-			function insertSucces(response) {
-				ownProps.reset()
-				browserHistory.push(`/projects/${response.id}/steps`)
-			}
+			dispatch(
+				updateProject(
+					{progress: 2},
+					() => ownProps.reset()
+				)
+			)
+			// function insertSucces(response) {
+			// 	ownProps.reset()
+			// 	browserHistory.push(`/projects/${response.id}/steps`)
+			// }
 		},
     })
-)(ConfilctsPage))
+)(BreaksForm))

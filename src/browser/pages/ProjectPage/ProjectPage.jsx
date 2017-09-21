@@ -5,7 +5,6 @@ import React, { PureComponent } from 'react'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 // project files
 import PageWrapper from 'browser/components/PageWrapper'
-import PlotPointsForm from 'browser/components/PlotPointsForm'
 import { translate as t } from 'browser/containers/Translator'
 import ProgressStepper from 'browser/components/ProgressStepper'
 
@@ -20,14 +19,13 @@ class ProjectPage extends PureComponent {
 						<center><h1>{project.get('title')}</h1></center>
 						<center><h2>{project.get('shortPitch')}</h2></center>
 						<ProgressStepper />
-						<PlotPointsForm />
 					</Grid>
 				</PageWrapper>
     }
 }
 
 ProjectPage.propTypes = {
-	// prop: PropTypes.object,
+	project: PropTypes.object.isRequired,
 }
 
 export { ProjectPage }
