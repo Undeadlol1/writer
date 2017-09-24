@@ -51,7 +51,7 @@ class UpsertSceneForm extends PureComponent {
 UpsertSceneForm.propTypes = {
 	name: PropTypes.string,
 	description: PropTypes.string,
-	step: PropTypes.bool,
+	step: PropTypes.number,
 	isPlotPoint: PropTypes.bool,
 }
 

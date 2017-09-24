@@ -46,7 +46,7 @@ class PlotPointsForm extends PureComponent {
 						<p>{t('now_try_to_fill_out_steps')}</p>
 						<p>{t('what_kind_of_points_would_be_interesting_to_see_in_your_story')}</p>
 						<p>{t('dont_get_stuck_in_wirters_block_have_fun')}</p>
-						<UpsertSceneForm name={scene} step isPlotPoint={true} />
+						<UpsertSceneForm name={scene} step={step} isPlotPoint={true} key={step} />
 					</Col>
 				</Row>
     }
