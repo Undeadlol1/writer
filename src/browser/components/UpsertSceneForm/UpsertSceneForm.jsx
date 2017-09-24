@@ -21,7 +21,9 @@ class UpsertSceneForm extends PureComponent {
 		const className = cls(props.className, 'UpsertSceneForm')
 		return 	<Row className={className}>
 					<Col xs={12}>
+						{props.children}
 						<Form onSubmit={props.handleSubmit(props.upsertScene)}>
+							{!props.isPlotPoint &&
 							<Field
 								fullWidth
 								name="name"
@@ -30,7 +32,7 @@ class UpsertSceneForm extends PureComponent {
 								autoFocus={!props.isPlotPoint}
 								disabled={props.isPlotPoint || props.submitting}
 								hintText={props.isPlotPoint ? t(props.name) : t("name")}
-							/>
+							/>}
 							<Field
 								rows={3}
 								fullWidth

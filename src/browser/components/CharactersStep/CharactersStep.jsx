@@ -15,10 +15,6 @@ class CharactersStep extends Component {
 		const characters = props.Characters.toJS()
 		const hero = find(characters, ['role', 'hero'])
 		const enemy = find(characters, ['role', 'enemy'])
-		console.log('enemy: ', enemy);
-		console.log('characters: ', characters);
-		console.log('hero: ', hero);
-		console.log('typeof hero: ', typeof hero);
 
 		return 	<div className={className}>
 					this is where fun stuff starts
@@ -45,7 +41,7 @@ class CharactersStep extends Component {
 						typeof hero != 'undefined' && !selectn('backstory', enemy)
 						? 	<div>
 								<p>Now let's work on the enemy</p>
-								<UpsertCharacterForm role="enemy" isUpdate character={enemy} />
+								<UpsertCharacterForm name={enemy.name} role="enemy" isUpdate character={enemy} />
 							</div>
 						: 	null
 					}

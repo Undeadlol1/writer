@@ -12,6 +12,8 @@ import UpsertSceneForm from 'browser/components/UpsertSceneForm'
 class ProjectPage extends PureComponent {
     render() {
 		const { project, loading } = this.props
+		// TODO plot point scenes only
+		const scenes = project.get('Scenes')
 		return 	<PageWrapper
 					loading={loading}
 					className='ProjectPage'
@@ -20,6 +22,9 @@ class ProjectPage extends PureComponent {
 						<center><h1>{project.get('title')}</h1></center>
 						<center><h2>{project.get('shortPitch')}</h2></center>
 						<ProgressStepper />
+						{
+							project.get('progress') >= 3 && scenes.map(scene => <p key={scene.get('id')}>{scene.get('description')}</p>)
+						}
 					</Grid>
 				</PageWrapper>
     }

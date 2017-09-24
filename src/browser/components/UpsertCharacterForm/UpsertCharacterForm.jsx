@@ -19,26 +19,27 @@ class UpsertCharacterForm extends PureComponent {
     render() {
 		const {props} = this
 		const className = cls(props.className, 'UpsertCharacterForm')
-		console.log('props.character: ', props.character);
+		// console.log('props.character: ', props.character);
 		console.log('props.initialValues: ', props.initialValues);
+		console.log('props.valid: ', props.valid);
 		return 	<Row className={className}>
 					<Col xs={12}>
-						<Form onSubmit={props.handleSubmit(props.upsertScene)}>
+						<Form onSubmit={props.handleSubmit(props.upsertCharacter)}>
 							<Field
-								//autoFocus
+								autoFocus
 								fullWidth
 								name="name"
+								hintText={t("name")}
 								component={TextField}
-								//disabled={props.isPlotPoint || props.submitting}
-								hintText={props.isPlotPoint ? t(props.name) : t("name")}
+								disabled={props.submitting}
 							/>
 							<Field
 								fullWidth
 								name="image"
 								multiLine={true}
 								component={TextField}
-								disabled={props.isPlotPoint || props.submitting}
-								hintText={props.isPlotPoint ? t(props.image) : t("image_url")}
+								disabled={props.submitting}
+								hintText={t("image_url")}
 							/>
 							<Field
 								rows={5}
@@ -88,7 +89,6 @@ export { UpsertCharacterForm }
 export default
 reduxForm({
 	form: 'UpsertCharacterForm',
-	// enableReinitialize: true,
 	validate(values, ownProps) {
 		console.log('values: ', values);
 		let errors = {}
@@ -106,19 +106,27 @@ reduxForm({
 	},
 })
 (connect(
-	(state, {character, ...rest}) => ({
-		...rest,
-		// initial form values
-		initialValues: {name: 'penises', image: '123'},
-	}),
+	(state, ownProps) => {
+		return ({
+			initialValues: {
+				name: ownProps.name,
+				// image: 'penises',
+				// backstory: 'penises',
+				// traits: 'penises',
+				// conflicts: 'penises',
+			},
+			...ownProps,
+			// initial form values
+		// initialValues: {name: 'penises', image: '123'},
+	})},
 	(dispatch, ownProps) => ({
-		upsertScene(values) {
+		upsertCharacter(values) {
 			values.role = ownProps.role
 			dispatch(
-				createCharacter(
-					values,
-					() => ownProps.reset()
-				)
+				// createCharacter(
+				// 	values,
+					// () => ownProps.reset()
+				// )
 			)
 		},
 	})
