@@ -6,6 +6,7 @@ import Divider from 'material-ui/Divider'
 import { translate as t } from 'browser/containers/Translator'
 import UpsertCharacterForm from 'browser/components/UpsertCharacterForm'
 import find from 'lodash/find'
+import selectn from 'selectn'
 
 class CharactersStep extends Component {
 	render() {
@@ -17,6 +18,7 @@ class CharactersStep extends Component {
 		console.log('enemy: ', enemy);
 		console.log('characters: ', characters);
 		console.log('hero: ', hero);
+		console.log('typeof hero: ', typeof hero);
 
 		return 	<div className={className}>
 					this is where fun stuff starts
@@ -39,12 +41,13 @@ class CharactersStep extends Component {
 							</div>
 					}
 					{
-						hero && find(characters, ['backstory', true])
-						? 	null
-						: 	<div>
+						// hero is created and enemy field are not filled in
+						typeof hero != 'undefined' && !selectn('backstory', enemy)
+						? 	<div>
 								<p>Now let's work on the enemy</p>
 								<UpsertCharacterForm role="enemy" isUpdate character={enemy} />
 							</div>
+						: 	null
 					}
 				</div>
 	}
