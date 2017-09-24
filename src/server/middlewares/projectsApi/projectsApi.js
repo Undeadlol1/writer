@@ -1,5 +1,5 @@
 import { mustLogin } from 'server/services/permissions'
-import { Projects } from 'server/data/models'
+import { Projects, Scenes, Characters } from 'server/data/models'
 import express from 'express'
 import slugify from 'slug'
 
@@ -39,7 +39,8 @@ router
         where: {
           UserId,
           $or: [{slug}, {title}]
-        }
+        },
+        include: [Scenes, Characters],
       })
       res.json(project)
     } catch (error) {
@@ -68,7 +69,9 @@ router
     try {
       const UserId = user.id
       const ProjectId = params.ProjectId
-      const project = await Projects.findById(ProjectId)
+      const project = await Projects.findById(ProjectId, {
+          include: [Scenes, Characters],
+      })
 
       if (UserId != project.UserId) return res.status(401).end()
 

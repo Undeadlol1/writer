@@ -13,17 +13,21 @@ import BreaksForm from 'browser/components/BreaksForm'
 import ConflictsForm from 'browser/components/ConflictsForm'
 import PlotPointsForm from 'browser/components/PlotPointsForm'
 import ExpandTransition from 'material-ui/internal/ExpandTransition'
+import UpsertCharacterForm from 'browser/components/UpsertCharacterForm'
+import CharactersStep from 'browser/components/CharactersStep'
 
 const steps = [
 	'add_some_conflicts',
 	'major_breaks',
 	'story_steps',
+	'work_on_characters',
 ]
 
 const forms = [
 	<ConflictsForm />,
 	<BreaksForm />,
 	<PlotPointsForm />,
+	<CharactersStep />,
 ]
 
 class ProgressStepper extends Component {

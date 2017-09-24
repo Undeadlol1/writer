@@ -7,7 +7,8 @@ const projectStructure = 	Map({
 							title: '',
 							UserId: '',
 							shortPitch: '',
-							characters: List(),
+							Scenes: List(),
+							Characters: List(),
 						})
 
 export const initialState = Map({
@@ -32,12 +33,7 @@ export default (state = initialState, {type, payload}) => {
 		// 	})
 		case 'RECIEVE_PROJECT':
 			return state
-				.merge(payload)
-				.updateIn(['projects'], arr => {
-					return isEmpty(payload)
-						? arr
-						: arr.push(Map(payload))
-				})
+				.mergeDeep(payload)
 				.merge({
 					loading: false,
 					// finishedLoading: true,
@@ -58,7 +54,8 @@ export default (state = initialState, {type, payload}) => {
 		case 'UNLOAD_PROJECT':
 			return state
 				.merge(projectStructure)
-				.merge({projects: List()})
+				.merge({Scenes: List()})
+				.merge({Characters: List()})
 				.mergeDeep({
 					loading: false,
 					// finishedLoading: false,
@@ -77,8 +74,10 @@ export default (state = initialState, {type, payload}) => {
 				searchIsActive: false,
 				searchedVideos: payload
 			})
+		case 'ADD_SCENE':
+			return state.updateIn(['Scenes'], arr => arr.push(payload))
 		case 'ADD_CHARACTER':
-			return state.updateIn(['characters'], arr => arr.push(payload))
+			return state.updateIn(['Characters'], arr => arr.push(payload))
 		default:
 			return state
 	}

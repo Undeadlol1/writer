@@ -17,6 +17,17 @@ export default {
     choose_your_language: 'Choose your language',
     currently_zero_content_here: 'Currently zero content here',
 
+    name: 'Name',
+    description: 'Description',
+
+    create_characters: 'Create some characters',
+    work_on_characters: 'Work on characters',
+
+    image_url: 'Image url',
+    backstory: 'Backstory',
+    character_traits: 'Character traits',
+    conflicts_and_fears: 'Conflicts and fears',
+
     short_pitch: 'Short pitch',
     add_short_pitch: 'Add short pitch',
     short_pitch_cant_be_empty: 'Short pitch can\'t be empty',

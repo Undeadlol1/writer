@@ -17,7 +17,6 @@ import { createScene, createCharacter, updateProject } from 'browser/redux/proje
 class StepsPage extends PureComponent {
     render() {
 		const {props} = this
-		const className = cls(props.className, "PlotPointsForm")
 		return 	<PageWrapper
 					className='StepsPage'
 					loading={props.loading}

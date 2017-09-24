@@ -18,6 +18,17 @@ export default {
     choose_your_language: 'Выберите ваш язык',
     currently_zero_content_here: 'Пока контента нет',
 
+    name: 'Имя',
+    description: 'Описание',
+
+    create_characters: 'Добавьте персонажей',
+    work_on_characters: 'Проработайте персонажей',
+
+    image_url: 'Url изображения',
+    backstory: 'Предыстория',
+    character_traits: 'Черты характера',
+    conflicts_and_fears: 'Конфликты и страхи',
+
     short_pitch: 'Краткое описание',
     add_short_pitch: 'Добавить краткое описание',
     short_pitch_cant_be_empty: 'Краткое описание не может быть пустым',

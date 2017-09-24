@@ -7,6 +7,7 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import PageWrapper from 'browser/components/PageWrapper'
 import { translate as t } from 'browser/containers/Translator'
 import ProgressStepper from 'browser/components/ProgressStepper'
+import UpsertSceneForm from 'browser/components/UpsertSceneForm'
 
 class ProjectPage extends PureComponent {
     render() {
