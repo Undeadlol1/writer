@@ -23,6 +23,20 @@ export const initialState = Map({
 							...projectStructure.toJS()
 						})
 
+/**
+ * get index of object in list
+ *
+ * @param {object} state
+ * @param {string} listName propery name of a list
+ * @param {object} listItem actual
+ * @returns index number
+ */
+function getIndex(state, listName, listItem) {
+	return 	state
+			.get(listName)
+			.findIndex(item => item.id === listItem.id)
+}
+
 export default (state = initialState, {type, payload}) => {
 	switch(type) {
 		// case 'FETCHING_PROJECT':
@@ -78,6 +92,16 @@ export default (state = initialState, {type, payload}) => {
 			return state.updateIn(['Scenes'], arr => arr.push(payload))
 		case 'ADD_CHARACTER':
 			return state.updateIn(['Characters'], arr => arr.push(payload))
+		case 'UPDATE_SCENE':
+			return 	state.updateIn(
+						['Scenes', getIndex(state, 'Scenes', payload)],
+						() => payload
+					)
+		case 'UPDATE_CHARACTER':
+			return 	state.updateIn(
+						['Characters', getIndex(state, 'Scenes', payload)],
+						() => payload
+					)
 		default:
 			return state
 	}

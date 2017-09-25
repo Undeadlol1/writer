@@ -60,6 +60,7 @@ class PlotPointsForm extends PureComponent {
 				className = cls(props.className, "PlotPointsForm"),
 				existingScene = scenes.find(s => s.name == scene)
 
+				console.log('scenes: ', scenes);
 		if (step == points.length) props.nextStep()
 		return 	<Row className={className}>
 					<Col xs={12}>
@@ -67,7 +68,15 @@ class PlotPointsForm extends PureComponent {
 						<p>{t('what_kind_of_points_would_be_interesting_to_see_in_your_story')}</p>
 						<p>{t('dont_get_stuck_in_wirters_block_have_fun')}</p>
 						<Divider />
-						<UpsertSceneForm name={scene} description={existingScene && existingScene.description} step={step} isPlotPoint={true} key={step}>
+						<UpsertSceneForm
+							key={step}
+							step={step}
+							name={scene}
+							isPlotPoint={true}
+							scene={existingScene}
+							isUpdate={Boolean(existingScene)}
+							description={existingScene && existingScene.description}
+						>
 							<p><b>{t(scene)}</b> - {explanations[step]}</p>
 						</UpsertSceneForm>
 					</Col>

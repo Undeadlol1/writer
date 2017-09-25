@@ -13,8 +13,10 @@ class CharactersStep extends Component {
 		const {props} = this
 		const className = cls(props.className, "CharactersStep")
 		const characters = props.Characters.toJS()
+		console.log('characters: ', characters);
 		const hero = find(characters, ['role', 'hero'])
 		const enemy = find(characters, ['role', 'enemy'])
+		console.log('enemy: ', enemy);
 
 		return 	<div className={className}>
 					this is where fun stuff starts
@@ -41,7 +43,7 @@ class CharactersStep extends Component {
 						typeof hero != 'undefined' && !selectn('backstory', enemy)
 						? 	<div>
 								<p>Now let's work on the enemy</p>
-								<UpsertCharacterForm name={enemy.name} role="enemy" isUpdate character={enemy} />
+								<UpsertCharacterForm name={enemy && enemy.name} role="enemy" isUpdate character={enemy} key={Math.random()} />
 							</div>
 						: 	null
 					}

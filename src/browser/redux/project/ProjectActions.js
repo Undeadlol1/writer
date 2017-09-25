@@ -18,6 +18,8 @@ export const actions = createActions({
   RECIEVE_SEARCHED_VIDEOS: videos => videos,
   ADD_CHARACTER: object => object,
   ADD_SCENE: object => object,
+  UPDATE_SCENE: object => object,
+  UPDATE_CHARACTER: object => object,
 })
 
 /**
@@ -98,19 +100,31 @@ export const createScene = (payload, callback) => (dispatch, getState) => {
  * @param {function} callback
  */
 export const updateScene = (payload, callback) => (dispatch, getState) => {
-	// console.warn('implement this!!!!');
-	// const ProjectId = payload.ProjectId || getState().project.get('id')
-	// payload.ProjectId = ProjectId
-	// console.log('ProjectId: ', ProjectId);
-	// return fetch(charactersUrl, headersAndBody(payload))
-	// 	.then(checkStatus)
-	// 	.then(parseJSON)
-	// 	.then(function(response) {
-	// 		console.log('DO THIS!!1');
-	// 		// dispatch(actions.addCharacter(response))
-	// 		if (callback) return callback(response)
-	// 	})
-	// 	.catch(err => console.error(err))
+	console.log('updateScene');
+	return fetch(scenesUrl + payload.id, headersAndBody(payload, 'PUT'))
+		.then(checkStatus)
+		.then(parseJSON)
+		.then(function(response) {
+			dispatch(actions.updateScene(response))
+			if (callback) return callback(response)
+		})
+		.catch(err => console.error(err))
+}
+
+/**
+ * update a character
+ * @param {object} payload
+ * @param {function} callback
+ */
+export const updateCharacter = (payload, callback) => (dispatch, getState) => {
+	return fetch(charactersUrl + payload.id, headersAndBody(payload, 'PUT'))
+		.then(checkStatus)
+		.then(parseJSON)
+		.then(function(response) {
+			dispatch(actions.updateCharacter(response))
+			if (callback) return callback(response)
+		})
+		.catch(err => console.error(err))
 }
 
 /**

@@ -20,14 +20,14 @@ const steps = [
 	'add_some_conflicts',
 	'major_breaks',
 	'story_steps',
-	// 'work_on_characters',
+	'work_on_characters',
 ]
 
 const forms = [
 	<ConflictsForm />,
 	<BreaksForm />,
 	<PlotPointsForm />,
-	// <CharactersStep />,
+	<CharactersStep />,
 ]
 
 class ProgressStepper extends Component {

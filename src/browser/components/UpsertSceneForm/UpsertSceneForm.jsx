@@ -1,6 +1,7 @@
 // dependencies
 import cls from 'classnames'
 import PropTypes from 'prop-types'
+import extend from 'lodash/assignIn'
 import { connect } from 'react-redux'
 import { stringify } from 'query-string'
 import React, { PureComponent } from 'react'
@@ -102,6 +103,8 @@ UpsertSceneForm.propTypes = {
 	description: PropTypes.string,
 	step: PropTypes.number,
 	isPlotPoint: PropTypes.bool,
+	isUpdate: PropTypes.bool,
+	scene: PropTypes.object,
 }
 
 export { UpsertSceneForm }
@@ -117,14 +120,24 @@ export default connect(
 	}),
 	(dispatch, ownProps) => ({
 		upsertScene(values) {
-			dispatch(
-				createScene({
-					step: ownProps.step,
-					isPlotPoint: ownProps.isPlotPoint,
-					name: ownProps.name || values.name,
-					description: ownProps.description || values.description,
-				})
-			)
+			if (ownProps.isUpdate) {
+				dispatch(
+					updateScene(
+						// merge new values with previous ones
+						extend(ownProps.scene, values)
+					)
+				)
+			}
+			else {
+				dispatch(
+					createScene({
+						step: ownProps.step,
+						isPlotPoint: ownProps.isPlotPoint,
+						name: ownProps.name || values.name,
+						description: ownProps.description || values.description,
+					})
+				)
+			}
 		},
 	})
 )(UpsertSceneForm)

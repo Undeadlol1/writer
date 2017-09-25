@@ -82,4 +82,20 @@ router
     }
   })
 
+  // update character
+  .put('/:CharacterId', mustLogin, async ({params, user, body}, res) => {
+    try {
+      const UserId = user.id
+      const CharacterId = params.CharacterId
+      const character = await Characters.findById(CharacterId)
+
+      if (UserId != character.UserId) return res.status(401).end()
+
+      res.json(await character.update(body))
+    } catch (error) {
+      console.log(error)
+      res.status(500).end(error)
+    }
+  })
+
 export default router

@@ -82,4 +82,21 @@ router
     }
   })
 
+
+  // update scene
+  .put('/:SceneId', mustLogin, async ({params, user, body}, res) => {
+    try {
+      const UserId = user.id
+      const SceneId = params.SceneId
+      const scene = await Scenes.findById(SceneId)
+
+      if (UserId != scene.UserId) return res.status(401).end()
+
+      res.json(await scene.update(body))
+    } catch (error) {
+      console.log(error)
+      res.status(500).end(error)
+    }
+  })
+
 export default router

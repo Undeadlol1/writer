@@ -69,9 +69,7 @@ router
     try {
       const UserId = user.id
       const ProjectId = params.ProjectId
-      const project = await Projects.findById(ProjectId, {
-          include: [Scenes, Characters],
-      })
+      const project = await Projects.findById(ProjectId)
 
       if (UserId != project.UserId) return res.status(401).end()
 

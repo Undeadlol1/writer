@@ -12,14 +12,15 @@ import browserHistory from 'react-router/lib/browserHistory'
 // project files
 import store from 'browser/redux/store'
 import { translate as t } from 'browser/containers/Translator'
-import { createCharacter, updateScene } from 'browser/redux/project/ProjectActions'
+import { createCharacter, updateCharacter } from 'browser/redux/project/ProjectActions'
 import { checkStatus, parseJSON, headersAndBody } from'browser/redux/actions/actionHelpers'
 
 class UpsertCharacterForm extends PureComponent {
     render() {
 		const {props} = this
 		const className = cls(props.className, 'UpsertCharacterForm')
-		// console.log('props.character: ', props.character);
+		console.log('props.name: ', props.name);
+		console.log('props.character: ', props.character);
 		console.log('props.initialValues: ', props.initialValues);
 		console.log('props.valid: ', props.valid);
 		return 	<Row className={className}>
@@ -82,29 +83,12 @@ UpsertCharacterForm.propTypes = {
 	// step: PropTypes.bool,
 	// isPlotPoint: PropTypes.bool,
 	character: PropTypes.object,
+	isUpdate: PropTypes.bool,
 }
 
 export { UpsertCharacterForm }
 
 export default
-reduxForm({
-	form: 'UpsertCharacterForm',
-	validate(values, ownProps) {
-		console.log('values: ', values);
-		let errors = {}
-		const user = store.getState().user.get('id')
-
-		if (!user) errors.name = t('please_login')
-		if (ownProps.isPlotPoint) {
-			if (!values.description) errors.description = t('please_fill_this_field')
-		}
-		else {
-			if (!values.name) errors.name = t('please_fill_this_field')
-		}
-
-		return errors
-	},
-})
 (connect(
 	(state, ownProps) => {
 		return ({
@@ -122,12 +106,25 @@ reduxForm({
 	(dispatch, ownProps) => ({
 		upsertCharacter(values) {
 			values.role = ownProps.role
-			dispatch(
-				// createCharacter(
-				// 	values,
-					// () => ownProps.reset()
-				// )
-			)
+			if (ownProps.isUdpate) dispatch(updateCharacter(values))
+			else dispatch(createCharacter(values)) // , () => ownProps.reset()
 		},
 	})
-)(UpsertCharacterForm))
+)
+(reduxForm({
+	form: 'UpsertCharacterForm',
+	validate(values, ownProps) {
+		let errors = {}
+		const user = store.getState().user.get('id')
+
+		if (!user) errors.name = t('please_login')
+		if (ownProps.isPlotPoint) {
+			if (!values.description) errors.description = t('please_fill_this_field')
+		}
+		else {
+			if (!values.name) errors.name = t('please_fill_this_field')
+		}
+
+		return errors
+	},
+})(UpsertCharacterForm)))
