@@ -22,9 +22,9 @@ export class MoodsList extends Component {
 		const { props } = this
 		if(props.moods.size) {
 			return props.moods.map( mood => {
-					const nodeContent = mood.get('image')
-					const src = nodeContent
-								? nodeContent
+					const image = mood.get('image')
+					const src = image
+								? image
 								: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2000px-No_image_available.svg.png'
 					return	<Col className="MoodsList__item" style={itemStyles} xs={12} sm={6} md={4} lg={3} key={mood.get('id')}>
 								<Paper zDepth={5}>

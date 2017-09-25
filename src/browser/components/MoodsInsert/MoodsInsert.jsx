@@ -1,10 +1,12 @@
 import cls from 'classnames'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import isImageUrl from 'is-image-url'
 import store from 'browser/redux/store'
 import Dialog from 'material-ui/Dialog'
 import { stringify } from 'query-string'
 import React, { Component } from 'react'
+import { isUrl } from 'shared/validators'
 import FlatButton from 'material-ui/FlatButton'
 import { TextField } from 'redux-form-material-ui'
 import { Form, Field, reduxForm } from 'redux-form'
@@ -54,6 +56,7 @@ export class MoodsInsert extends Component {
 								<Col xs={12}>
 									<Field name="title" component={TextField} hidden={asyncValidating} hintText={translate("add_something")} autoFocus fullWidth />
 									<Field name="shortPitch" component={TextField} hidden={asyncValidating} hintText={translate("add_short_pitch")} fullWidth />
+									<Field name="image" component={TextField} hidden={asyncValidating} hintText={translate("image_url_not_required")} fullWidth />
 									<button type="submit" hidden={true}>Submit</button>
 								</Col>
 							</Row>
@@ -82,6 +85,7 @@ export default reduxForm({
 		if (!user) errors.title = translate('please_login')
 		if (!values.title) errors.title = translate('title_cant_be_empty')
 		if (!values.shortPitch) errors.shortPitch = translate('short_pitch_cant_be_empty')
+		if (values.image && !isImageUrl(values.image)) errors.image = translate('something_wrong_with_this_url')
 
 		return errors
 	},

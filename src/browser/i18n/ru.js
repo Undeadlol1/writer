@@ -25,6 +25,7 @@ export default {
     work_on_characters: 'Проработайте персонажей',
 
     image_url: 'Url изображения',
+    image_url_not_required: 'Url изображения (не обязательно)',
     backstory: 'Предыстория',
     character_traits: 'Черты характера',
     conflicts_and_fears: 'Конфликты и страхи',

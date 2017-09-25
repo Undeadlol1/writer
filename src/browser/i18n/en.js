@@ -24,6 +24,7 @@ export default {
     work_on_characters: 'Work on characters',
 
     image_url: 'Image url',
+    image_url_not_required: 'Image url (not required)',
     backstory: 'Backstory',
     character_traits: 'Character traits',
     conflicts_and_fears: 'Conflicts and fears',

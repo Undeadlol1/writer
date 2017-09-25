@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       type: DataTypes.INTEGER,
     },
+    image: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
     UserId: {
       allowNull: false,
       type: DataTypes.INTEGER

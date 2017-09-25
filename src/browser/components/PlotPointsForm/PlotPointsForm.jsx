@@ -17,18 +17,18 @@ import { createScene, createCharacter, updateProject } from 'browser/redux/proje
 
 const points = [
 	'opening_image',
-	'set_up',
+	'set_up', // beginning
 	'theme_stated',
 	'catalyst',
 	'debate',
-	'break_into_two',
+	'break_into_two', // middle
 	'b_story',
 	'fun_and_games',
 	'midpoint',
 	'bad_guys_close_in',
 	'all_is_lost',
 	'dark_night_of_the_soul',
-	'break_into_three',
+	'break_into_three', // end
 	'finale',
 	'final_image',
 ]
@@ -55,18 +55,19 @@ class PlotPointsForm extends PureComponent {
     render() {
 		const 	{props} = this,
 				step = props.Scenes.size - 1,
+				scenes = props.Scenes.toJS(),
 				scene = points[step],
-				className = cls(props.className, "PlotPointsForm")
+				className = cls(props.className, "PlotPointsForm"),
+				existingScene = scenes.find(s => s.name == scene)
 
 		if (step == points.length) props.nextStep()
-
 		return 	<Row className={className}>
 					<Col xs={12}>
 						<p>{t('now_try_to_fill_out_steps')}</p>
 						<p>{t('what_kind_of_points_would_be_interesting_to_see_in_your_story')}</p>
 						<p>{t('dont_get_stuck_in_wirters_block_have_fun')}</p>
-						<UpsertSceneForm name={scene} step={step} isPlotPoint={true} key={step}>
-							<Divider />
+						<Divider />
+						<UpsertSceneForm name={scene} description={existingScene && existingScene.description} step={step} isPlotPoint={true} key={step}>
 							<p><b>{t(scene)}</b> - {explanations[step]}</p>
 						</UpsertSceneForm>
 					</Col>
@@ -88,9 +89,7 @@ connect(
 	}),
 	(dispatch, ownProps) => ({
         nextStep() {
-			dispatch(
-				updateProject({progress: 3})
-			)
+			dispatch(updateProject({progress: 3}))
 		},
     })
 )(PlotPointsForm)
