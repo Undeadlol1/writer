@@ -41,7 +41,10 @@ const clientProductionPlugins = isProduction ? [
     // new webpack.optimize.DedupePlugin(), //dedupe similar code
     // TODO minify server
     // TODO try this https://github.com/webpack-contrib/uglifyjs-webpack-plugin
-    new webpack.optimize.UglifyJsPlugin({minimize: true}), //minify everything
+    /**
+     * temporary disabled due to unknown bug. Waiting for debuging
+     */
+    // new webpack.optimize.UglifyJsPlugin({minimize: true}), //minify everything
     new CompressionPlugin({//   <-- Add this
       asset: "[path].gz[query]",
       algorithm: "gzip",
