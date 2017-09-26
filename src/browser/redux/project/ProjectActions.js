@@ -131,9 +131,8 @@ export const updateCharacter = (payload, callback) => (dispatch, getState) => {
  * fetch project using project slug
  * @param {String} slug project slug (optional)
  */
-export const fetchProject = slug => (dispatch, getState) => {
+export const fetchProject = (UserId, slug) => (dispatch, getState) => {
 	const state = getState()
-	const UserId = state.user.get('id')
 	const projectSlug = slug || state.project.get('slug')
 
 	// dispatch(actions.fetchingProject())

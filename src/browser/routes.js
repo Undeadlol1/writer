@@ -70,11 +70,12 @@ const routesConfig = {
       // fetch project data
       onEnter({params}, replace, done) {
         const fetchedProjectSlug = store.getState().project.get('id')
+        const UserId = store.getState().user.get('id')
         // check if fetching is needed
         if (fetchedProjectSlug == params.ProjectSlug) return done()
         else {
           store
-          .dispatch(fetchProject(params.ProjectSlug))
+          .dispatch(fetchProject(UserId, params.ProjectSlug))
           .then(() => done())
         }
       }
