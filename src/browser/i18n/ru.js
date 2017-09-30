@@ -42,8 +42,8 @@ export default {
     what_is_heroes_enterlan_struggle: 'Какой у героя внутренний конфликт? Какова его дилемма? Какие у него демоны? Как он изменится и чему научится к концу истории',
 
     usually_story_consists_of_3_parts: 'Обычно история состоит ищ 3х частей (или актов)',
-    transition_into_each_act_is_done_via_disasters: `Переходу в каждый акт делается с помощью "катастроф" или "прорывов".
-    Это значит что каждый акт начинается с чего-то болшьго что меняет жизнь героя кардинально.
+    transition_into_each_act_is_done_via_disasters: `Переход в каждый акт делается с помощью "катастроф" или "прорывов".
+    Это значит что каждый акт начинается с чего-то большого что меняет жизнь героя кардинально.
     (например, внезапно появившаяся на горизонте армия врага)`,
     few_tips: 'Несколько советов',
     usually_it_is_good_idea_to_make_one_of_breaks_heroes_choice: 'Обычно это хорошая идея сделать один из прорывов выбором героя. Это показывает его силу и/или развитие персонажа. (например, героя решает драться вместо того чтобы бежать)',
@@ -59,7 +59,7 @@ export default {
     what_kind_of_points_would_be_interesting_to_see_in_your_story: 'What kind of points would be interesting to see in your story',
     dont_get_stuck_in_wirters_block_have_fun: 'Don\'t get stuck in writers block, have fun, lay it out. You can always come back and change things later',
 
-    opening_image: 'Opening Image', // Начальный образ
+    opening_image: 'Начальный образ', // Начальный образ
 	set_up: 'Set-up',
 	theme_stated: 'Theme Stated',
 	catalyst: 'Catalyst',
